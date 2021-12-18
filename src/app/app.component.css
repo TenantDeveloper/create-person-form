@@ -1,0 +1,9 @@
+.content {
+  background-color: #f3f3f3;
+  min-height: 100vh;
+  padding-top: 50px;
+}
+.content .container {
+  background-color: #fff;
+  padding: 15px;
+}

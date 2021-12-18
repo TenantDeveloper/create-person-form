@@ -1,0 +1,69 @@
+<div class="container">
+  <div *ngIf="loadingForm">
+    <app-loading> </app-loading>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Name *</label>
+          <input type="text" [formControlName]="'name'" class="form-control" />
+          <div class="alert alert-danger" *ngIf="name.invalid && name.touched">
+            <small> name is required </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Email *</label>
+          <input
+            type="email"
+            [formControlName]="'email'"
+            class="form-control"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="email.invalid && email.touched"
+          >
+            <small *ngIf="email.errors.required"> email is required </small>
+            <small *ngIf="email.errors.email"> email is wrong </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Day of birth *</label>
+          <input type="date" [formControlName]="'dob'" class="form-control" />
+          <div class="alert alert-danger" *ngIf="dob.invalid && dob.touched">
+            <small> day of birth is required </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label> Avatar (url) </label>
+          <input
+            type="text"
+            [formControlName]="'avatar'"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label> Country </label>
+          <select class="form-control" [formControlName]="'country'">
+            <option *ngFor="let country of countries" [value]="country.code">
+              {{ country.name }}
+            </option>
+          </select>
+        </div>
+        <div class="w-100 m-auto mt-4">
+          <button
+            [disabled]="form.invalid"
+            type="submit"
+            class="btn btn-success w-100 mt-4"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
